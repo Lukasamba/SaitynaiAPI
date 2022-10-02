@@ -1,4 +1,6 @@
 parameters:
+    bootstrapFiles:
+        - _ide_helper_models.php
     level: 6
 
     paths:
@@ -8,3 +10,6 @@ parameters:
 
     excludePaths:
         - app/Http/Middleware/Authenticate.php
+
+    checkMissingIterableValueType: false
+    reportUnmatchedIgnoredErrors: false
