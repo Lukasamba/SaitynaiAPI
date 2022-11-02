@@ -44,7 +44,7 @@ class AuthenticationController extends Controller
         ]);
 
         if ($token == '') {
-            return abort(422, 'User does not exist with specified email ant password.');
+            return abort(422, 'Invalid email or password.');
         }
 
         return response()->json(LoginUserResponse::from([

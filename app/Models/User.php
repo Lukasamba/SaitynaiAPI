@@ -5,13 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\DB;
+use Kra8\Snowflake\HasSnowflakePrimary;
+use Laratrust\Models\LaratrustRole;
 use Laravel\Sanctum\HasApiTokens;
 use Laratrust\Traits\LaratrustUserTrait;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 
 class User extends Authenticatable implements JWTSubject
 {
-    use LaratrustUserTrait, HasApiTokens, HasFactory, Notifiable;
+    use LaratrustUserTrait, HasApiTokens, HasFactory, Notifiable, HasSnowflakePrimary;
 
     protected $fillable = [
         'name',
@@ -35,6 +38,10 @@ class User extends Authenticatable implements JWTSubject
 
     public function getJWTCustomClaims()
     {
-        return [];
+        return [
+            'roles' => DB::table('role_user')
+                ->where('user_id', $this->id)
+                ->pluck('user_type'),
+        ];
     }
 }
