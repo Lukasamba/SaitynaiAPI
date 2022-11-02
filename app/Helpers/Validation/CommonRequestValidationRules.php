@@ -34,4 +34,16 @@ class CommonRequestValidationRules
         'array',
         'nullable',
     ];
+
+    const EMAIL_REQUIRED = [
+        'email',
+        ...self::STRING_REQUIRED,
+    ];
+
+    const PASSWORD_REQUIRED = [
+        'required',
+        'string',
+        'min:8',
+        'max:124',
+    ];
 }
