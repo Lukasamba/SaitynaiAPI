@@ -43,6 +43,10 @@ class AuthenticationController extends Controller
             'password' => $request->password,
         ]);
 
+        if ($token == '') {
+            return abort(422, 'User does not exist with specified email ant password.');
+        }
+
         return response()->json(LoginUserResponse::from([
             'access_token' => $token,
         ]));
@@ -50,6 +54,8 @@ class AuthenticationController extends Controller
 
     public function logout(): JsonResponse
     {
+        $this->auth->logout();
+
         return response()->json();
     }
 }
