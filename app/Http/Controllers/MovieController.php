@@ -42,8 +42,10 @@ class MovieController extends Controller
         return response()->json(MovieResponse::from($movie));
     }
 
-    public function deleteMovie(): JsonResponse
+    public function deleteMovie(Movie $movie): JsonResponse
     {
+        $movie->delete();
+
         return response()->json();
     }
 }
