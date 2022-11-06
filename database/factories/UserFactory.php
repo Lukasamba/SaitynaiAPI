@@ -27,19 +27,6 @@ class UserFactory extends Factory
             'name' => 'admin',
             'email' => 'dev@saitynai.com',
             'password' => Hash::make('password'),
-        ])->hasAttached(Role::query()
-            ->where('name', 'admin')
-            ->first(), [
-                'user_type' => 'Admin',
-        ], 'roles');
-    }
-
-    public function user()
-    {
-        return $this->state([])->hasAttached(Role::query()
-            ->where('name', 'user')
-            ->first(), [
-            'user_type' => 'User',
-        ], 'roles');
+        ]);
     }
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\Auth\LoginRequest;
 use App\Http\Requests\Auth\RegisterRequest;
 use App\Http\Responses\Auth\LoginUserResponse;
+use App\Models\Role;
 use App\Models\User;
 use Illuminate\Contracts\Auth\Factory;
 use Illuminate\Contracts\Auth\Guard;
@@ -31,7 +32,11 @@ class AuthenticationController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
+        $role = Role::query()->where('name', 'user')->first();
+
         $user->saveOrFail();
+
+        $user->attachRole($role);
 
         return response()->json();
     }
