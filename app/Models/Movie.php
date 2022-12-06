@@ -13,7 +13,7 @@ use Kra8\Snowflake\HasSnowflakePrimary;
  */
 class Movie extends Model
 {
-    use HasFactory, HasSnowflakePrimary, SoftDeletes;
+    use HasFactory, SoftDeletes;
 
     protected $fillable = [
         'name',

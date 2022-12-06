@@ -8,7 +8,7 @@ use Laratrust\Models\LaratrustRole;
 
 class Role extends LaratrustRole
 {
-    use HasFactory, HasSnowflakePrimary;
+    use HasFactory;
 
     public $guarded = [];
 }

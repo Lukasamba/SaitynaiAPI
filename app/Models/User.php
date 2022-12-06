@@ -14,7 +14,7 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
 
 class User extends Authenticatable implements JWTSubject
 {
-    use LaratrustUserTrait, HasApiTokens, HasFactory, Notifiable, HasSnowflakePrimary;
+    use LaratrustUserTrait, HasApiTokens, HasFactory, Notifiable;
 
     protected $fillable = [
         'name',

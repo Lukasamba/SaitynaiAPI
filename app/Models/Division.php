@@ -12,7 +12,7 @@ use Kra8\Snowflake\HasSnowflakePrimary;
  */
 class Division extends Model
 {
-    use HasFactory, HasSnowflakePrimary, SoftDeletes;
+    use HasFactory, SoftDeletes;
 
     protected $fillable = [
         'address',

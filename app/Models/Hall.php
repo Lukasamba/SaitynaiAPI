@@ -15,7 +15,7 @@ use Kra8\Snowflake\HasSnowflakePrimary;
  */
 class Hall extends Model
 {
-    use HasFactory, HasSnowflakePrimary, SoftDeletes;
+    use HasFactory, SoftDeletes;
 
     protected $fillable = [
         'division_id',
