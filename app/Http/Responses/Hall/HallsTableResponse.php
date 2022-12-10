@@ -24,12 +24,15 @@ final class HallsTableResponse extends Data
      */
     public static function fromModel($payload): static
     {
-        $divisionAddress = Division::query()->where('id', $payload->division_id)->pluck('address');
+        $divisionAddress = Division::query()->where('id', $payload->division_id)->first();
+
+
+//        dd(str_replace('"','' , $divisionAddress['address']));
 
         return new self(
             id: $payload->getKey(),
             division_id: $payload->division_id,
-            division_address: $divisionAddress,
+            division_address: $divisionAddress['address'],
             name: $payload->name,
             seats_count: $payload->seats_count,
         );
