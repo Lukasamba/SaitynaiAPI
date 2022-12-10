@@ -24,8 +24,6 @@ Route::group(['prefix' => 'halls'], function() {
 });
 
 Route::group(['prefix' => 'movies'], function() {
-    Route::get('', [MovieController::class, 'getList']);
-
     Route::post('', [MovieController::class, 'createMovie']);
     Route::get('{movie}', [MovieController::class, 'getMovie']);
     Route::put('{movie}', [MovieController::class, 'updateMovie']);
