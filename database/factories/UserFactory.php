@@ -29,4 +29,13 @@ class UserFactory extends Factory
             'password' => Hash::make('password'),
         ]);
     }
+
+    public function manager()
+    {
+        return $this->state([
+            'name' => 'manager',
+            'email' => 'manager@saitynai.com',
+            'password' => Hash::make('password'),
+        ]);
+    }
 }

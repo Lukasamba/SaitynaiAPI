@@ -24,6 +24,11 @@ class UserSeeder extends Seeder
             $user->attachRoles([$roleAdmin, $roleManager, $roleUser]);
         }
 
+        /** @var User $manager */
+        $manager = User::factory()->manager()->create();
+        $manager->attachRoles([$roleManager, $roleUser]);
+
+        /** @var User $user */
         $user = User::factory()->create();
         $user->attachRole($roleUser);
     }
