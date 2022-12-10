@@ -63,4 +63,13 @@ class AuthenticationController extends Controller
 
         return response()->json();
     }
+
+    public function refresh(): JsonResponse
+    {
+        $token = $this->auth->refresh();
+
+        return response()->json(LoginUserResponse::from([
+            'access_token' => $token,
+        ]));
+    }
 }
