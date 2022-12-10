@@ -57,6 +57,23 @@ class MovieController extends Controller
         /** @var User $user */
         $user = auth()->user();
 
+        if ($user->hasRole('manager')) {
+            $reservedMovies = UserMovie::all();
+            $movies = [];
+
+            foreach ($reservedMovies as $reservedMovie) {
+                $movie = Movie::query()->where('id', $reservedMovie->movie_id)->first();
+
+                $movies[] = [
+                    'user_id' => $reservedMovie->user_id,
+                    'name' => $movie->name,
+                    'reservation_date' => $reservedMovie->created_at,
+                ];
+            }
+
+            return response()->json(ReservationsTabelResponse::collection($movies));
+        }
+
         $reservedMovies = UserMovie::query()->where('user_id', $user->getKey())->get();
 
         $movies = [];
