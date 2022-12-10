@@ -28,4 +28,10 @@ Route::group(['prefix' => 'movies'], function() {
     Route::get('{movie}', [MovieController::class, 'getMovie']);
     Route::put('{movie}', [MovieController::class, 'updateMovie']);
     Route::delete('{movie}', [MovieController::class, 'deleteMovie']);
+
+
+    Route::group(['prefix' => 'reserve'], function() {
+        Route::get('list', [MovieController::class, 'getReservationsList']);
+        Route::post('{movie}', [MovieController::class, 'reserveMovie']);
+    });
 });
