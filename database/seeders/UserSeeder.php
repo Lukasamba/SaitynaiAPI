@@ -15,14 +15,16 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
+        $roleAdmin = Role::query()->where('name', 'admin')->first();
+        $roleManager = Role::query()->where('name', 'manager')->first();
+        $roleUser = Role::query()->where('name', 'user')->first();
+
         if (!User::query()->where('email')->exists()) {
             $user = User::factory()->admin()->create();
-            $role = Role::query()->where('name', 'admin')->first();
-            $user->attachRole($role);
+            $user->attachRoles([$roleAdmin, $roleManager, $roleUser]);
         }
 
         $user = User::factory()->create();
-        $role = Role::query()->where('name', 'user')->first();
-        $user->attachRole($role);
+        $user->attachRole($roleUser);
     }
 }
