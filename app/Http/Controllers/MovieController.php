@@ -59,21 +59,6 @@ class MovieController extends Controller
 
         $reservedMovies = UserMovie::query()->where('user_id', $user->getKey())->get();
 
-//
-//        Movie::query()->each(function (Movie $movie) use ($reservedMovies, $movies) {
-//            foreach ($reservedMovies as $reservedMovie) {
-//                if ($movie->id == $reservedMovie->movie_id) {
-//                    array_push($movies, $reservedMovie);
-//                }
-//            }
-//        });
-//
-//
-//        dd(json_encode($movies));
-//        $movies = ReservationsTabelResponse::collection(Movie::all());
-
-
-
         $movies = [];
 
         /** @var UserMovie $reservedMovie */
@@ -81,7 +66,7 @@ class MovieController extends Controller
             $movie = Movie::query()->where('id', $reservedMovie->movie_id)->first();
 
             $movies[] = [
-                'name' => $movie->getKey(),
+                'name' => $movie->name,
                 'reservation_date' => $reservedMovie->created_at,
             ];
         }
