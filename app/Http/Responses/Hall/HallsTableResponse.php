@@ -26,9 +26,6 @@ final class HallsTableResponse extends Data
     {
         $divisionAddress = Division::query()->where('id', $payload->division_id)->first();
 
-
-//        dd(str_replace('"','' , $divisionAddress['address']));
-
         return new self(
             id: $payload->getKey(),
             division_id: $payload->division_id,
