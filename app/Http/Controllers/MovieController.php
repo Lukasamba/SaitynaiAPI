@@ -47,6 +47,8 @@ class MovieController extends Controller
 
     public function deleteMovie(Movie $movie): JsonResponse
     {
+        UserMovie::query()->where('movie_id', $movie->getKey())->delete();
+
         $movie->delete();
 
         return response()->json();
