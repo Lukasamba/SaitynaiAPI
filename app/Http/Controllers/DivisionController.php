@@ -7,6 +7,7 @@ use App\Http\Requests\Division\UpdateDivisionRequest;
 use App\Http\Responses\Division\DivisionResponse;
 use App\Http\Responses\Division\DivisionsTableResponse;
 use App\Models\Division;
+use App\Models\Hall;
 use Illuminate\Http\JsonResponse;
 
 class DivisionController extends Controller
@@ -43,6 +44,8 @@ class DivisionController extends Controller
 
     public function deleteDivision(Division $division): JsonResponse
     {
+        Hall::query()->where('division_id', $division->getKey())->delete();
+
         $division->delete();
 
         return response()->json();
