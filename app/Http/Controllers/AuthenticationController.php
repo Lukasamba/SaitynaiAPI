@@ -43,6 +43,7 @@ class AuthenticationController extends Controller
 
     public function login(LoginRequest $request): JsonResponse
     {
+        /** @phpstan-ignore-next-line */
         $token = $this->auth->attempt([
             'email' => $request->email,
             'password' => $request->password,
@@ -59,6 +60,7 @@ class AuthenticationController extends Controller
 
     public function logout(): JsonResponse
     {
+        /** @phpstan-ignore-next-line */
         $this->auth->logout();
 
         return response()->json();
@@ -66,6 +68,7 @@ class AuthenticationController extends Controller
 
     public function refresh(): JsonResponse
     {
+        /** @phpstan-ignore-next-line */
         $token = $this->auth->refresh();
 
         return response()->json(LoginUserResponse::from([
